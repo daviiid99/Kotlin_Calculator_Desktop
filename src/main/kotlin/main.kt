@@ -191,7 +191,7 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            if (numberResult.value == 0.000){
+                            if (numberResult.value == 0.0011111111111){
                                 numberOne.value = (count.value).toDouble()
                             }
 
@@ -204,7 +204,7 @@ fun main() = application {
                             count.value = ""
 
                             // Guardar el simbolo
-                            symbol.value = "*"
+                            symbol.value = "x"
                             displayOperation.value = "x"
                         }) {
                         Text("x")
@@ -316,7 +316,7 @@ fun main() = application {
                                 display.value = "${numberOne.value / numberTwo.value}"
                                 displayOperation.value =  display.value
 
-                            } else if (symbol.value == "*") {
+                            } else if (symbol.value == "x") {
                                 display.value = "${numberOne.value * numberTwo.value}"
                                 displayOperation.value =  display.value
 
