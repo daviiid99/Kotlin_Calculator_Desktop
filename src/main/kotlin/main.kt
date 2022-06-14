@@ -51,6 +51,11 @@ fun main() = application {
         var display = remember {
             mutableStateOf("Type your number :)")
         }
+
+        var displayOperation = remember {
+            mutableStateOf("Type your number :)")
+        }
+
         MaterialTheme {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -64,7 +69,7 @@ fun main() = application {
                     modifier = Modifier.background(Color(121212)),
                 )
                 Text(
-                    text = "${display.value}",
+                    text = "${displayOperation.value}",
                     style = typography.h5,
                     color = Color.White,
                     textAlign = TextAlign.Start,
@@ -91,6 +96,7 @@ fun main() = application {
                             var number : String = count.value +  "1"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
 
 
                         }) {
@@ -102,6 +108,8 @@ fun main() = application {
                             var number : String = count.value +  "2"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
+
                         }) {
                         Text("2")
                     }
@@ -111,6 +119,8 @@ fun main() = application {
                             var number : String = count.value +  "3"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
+
                         }) {
                         Text("3")
                     }
@@ -133,6 +143,7 @@ fun main() = application {
 
                             // Guardar el simbolo
                             symbol.value = "/"
+                            displayOperation.value = "/"
 
                         }) {
                         Text("÷")
@@ -148,6 +159,8 @@ fun main() = application {
                             var number : String = count.value +  "4"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
+
                         }) {
                         Text("4")
                     }
@@ -157,6 +170,8 @@ fun main() = application {
                             var number : String = count.value +  "5"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
+
                         }) {
                         Text("5")
                     }
@@ -166,6 +181,7 @@ fun main() = application {
                             var number : String = count.value +  "6"
                             count.value = number
                             display.value = "${count.value}"
+
                         }) {
                         Text("6")
                     }
@@ -188,6 +204,7 @@ fun main() = application {
 
                             // Guardar el simbolo
                             symbol.value = "*"
+                            displayOperation.value = "x"
                         }) {
                         Text("x")
                     }
@@ -202,6 +219,7 @@ fun main() = application {
                             var number : String = count.value +  "7"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
                         }) {
                         Text("7")
                     }
@@ -211,6 +229,7 @@ fun main() = application {
                             var number : String = count.value +  "8"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
                         }) {
                         Text("8")
                     }
@@ -220,6 +239,7 @@ fun main() = application {
                             var number : String = count.value +  "9"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
                         }) {
                         Text("9")
                     }
@@ -242,6 +262,7 @@ fun main() = application {
 
                             // Guardar el simbolo
                             symbol.value = "-"
+                            displayOperation.value = "-"
                         }) {
                         Text("-")
                     }
@@ -283,15 +304,19 @@ fun main() = application {
                             // Guardar el simbolo
                             if (symbol.value == "+"){
                                 display.value = "${numberOne.value + numberTwo.value}"
+                                displayOperation.value =  display.value
 
                             } else if (symbol.value == "-"){
                                 display.value = "${numberOne.value - numberTwo.value}"
+                                displayOperation.value =  display.value
 
                             } else if (symbol.value == "/"){
                                 display.value = "${numberOne.value / numberTwo.value}"
+                                displayOperation.value =  display.value
 
                             } else if (symbol.value == "*") {
                                 display.value = "${numberOne.value * numberTwo.value}"
+                                displayOperation.value =  display.value
 
                             }
                             // Salvamos el resultado actual para mas tarde
