@@ -42,7 +42,7 @@ fun main() = application {
         }
 
         var numberResult = remember {
-            mutableStateOf(0.000)
+            mutableStateOf(0.0011111111111)
         }
 
         var symbol = remember {
@@ -129,7 +129,7 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            if (numberResult.value == 0.000){
+                            if (numberResult.value == 0.0011111111111){
                                 numberOne.value = (count.value).toDouble()
                             }
 
@@ -181,6 +181,7 @@ fun main() = application {
                             var number : String = count.value +  "6"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
 
                         }) {
                         Text("6")
@@ -248,7 +249,7 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            if (numberResult.value == 0.000){
+                            if (numberResult.value == 0.0011111111111){
                                 numberOne.value = (count.value).toDouble()
                             }
 
@@ -277,6 +278,7 @@ fun main() = application {
                             var number : String = count.value +  "0"
                             count.value = number
                             display.value = "${count.value}"
+                            displayOperation.value = display.value
                         }) {
                         Text("0")
                     }
@@ -331,7 +333,7 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            if (numberResult.value == 0.000){
+                            if (numberResult.value == 0.0011111111111){
                                 numberOne.value = (count.value).toDouble()
                             }
 
@@ -345,6 +347,7 @@ fun main() = application {
 
                             // Guardar el simbolo
                             symbol.value = "+"
+                            displayOperation.value = "+"
                         }) {
                         Text("+")
                     }
