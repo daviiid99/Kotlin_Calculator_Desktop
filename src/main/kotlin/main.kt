@@ -17,9 +17,6 @@ import androidx.compose.ui.window.rememberWindowState
 
 
 fun main() = application {
-    // Declaration of operation variables
-    var contador : String = "0.0"
-    var display : Double = contador.toDouble()
 
     Window(
         onCloseRequest = ::exitApplication,
@@ -249,7 +246,6 @@ fun main() = application {
                             count.value = ""
 
                             // Guardar el simbolo
-                            var resultado : Double = 0.0
                             if (symbol.value == "+"){
                                 display.value = "${numberOne.value + numberTwo.value}"
 

@@ -18,5 +18,19 @@ dependencies {
 compose.desktop {
     application {
         mainClass = "MainKt"
+        nativeDistributions {
+            targetFormats(org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe, org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg, org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi, org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb)
+            packageName = "Kotlin Calculator"
+            packageVersion = "1.0.0"
+            windows {
+                // a version for all Windows distributables
+                packageVersion = "1.0.0"
+                // a version only for the msi package
+                msiPackageVersion = "1.0.0"
+                // a version only for the exe package
+                exePackageVersion = "1.0.0"
+            }
+
+        }
     }
 }
