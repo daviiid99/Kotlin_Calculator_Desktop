@@ -53,7 +53,7 @@ fun main() = application {
         }
 
         var displayOperation = remember {
-            mutableStateOf("Type your number :)")
+            mutableStateOf("Type your operation :)")
         }
 
         MaterialTheme {
