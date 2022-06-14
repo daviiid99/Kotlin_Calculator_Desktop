@@ -2,8 +2,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
+import androidx.compose.material.darkColors
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -21,9 +23,13 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         title = "Kotlin Calculator for Desktop",
-        state = rememberWindowState(width = 300.dp, height = 400.dp)
+        state = rememberWindowState(width = 300.dp, height = 400.dp),
 
     ) {
+        MaterialTheme(colors = darkColors()) {
+            Box(Modifier.fillMaxSize().background(MaterialTheme.colors.background))
+        }
+
         var count = remember {
             mutableStateOf("")
         }
@@ -48,35 +54,35 @@ fun main() = application {
         MaterialTheme {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.background(Color.Black)
+                modifier = Modifier.background(Color(121212)),
             ) {
                 Text(
                     text = "",
                     style = typography.h5,
                     color = Color.White,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier.background(Color.Black),
+                    modifier = Modifier.background(Color(121212)),
                 )
                 Text(
                     text = "${display.value}",
                     style = typography.h5,
                     color = Color.White,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier.background(Color.Black),
+                    modifier = Modifier.background(Color(121212)),
                 )
                 Text(
                     text = "",
                     style = typography.h5,
                     color = Color.White,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier.background(Color.Black),
+                    modifier = Modifier.background(Color(121212)),
                 )
                 Text(
                     text = "",
                     style = typography.h5,
                     color = Color.White,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier.background(Color.Black),
+                    modifier = Modifier.background(Color(121212)),
                 )
                 Row(modifier = Modifier
                     .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
