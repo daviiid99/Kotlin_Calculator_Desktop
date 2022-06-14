@@ -35,6 +35,10 @@ fun main() = application {
             mutableStateOf(0.0)
         }
 
+        var numberResult = remember {
+            mutableStateOf(0.000)
+        }
+
         var symbol = remember {
             mutableStateOf("")
         }
@@ -109,7 +113,14 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            numberOne.value = (count.value).toDouble()
+                            if (numberResult.value == 0.000){
+                                numberOne.value = (count.value).toDouble()
+                            }
+
+                            else {
+                                numberOne.value = numberResult.value
+
+                            }
 
                             // Vaciamos la cadena donde guardamos temporalmente los numeros
                             count.value = ""
@@ -157,7 +168,14 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            numberOne.value = (count.value).toDouble()
+                            if (numberResult.value == 0.000){
+                                numberOne.value = (count.value).toDouble()
+                            }
+
+                            else {
+                                numberOne.value = numberResult.value
+
+                            }
 
                             // Vaciamos la cadena donde guardamos temporalmente los numeros
                             count.value = ""
@@ -204,7 +222,14 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            numberOne.value = (count.value).toDouble()
+                            if (numberResult.value == 0.000){
+                                numberOne.value = (count.value).toDouble()
+                            }
+
+                            else {
+                                numberOne.value = numberResult.value
+
+                            }
 
                             // Vaciamos la cadena donde guardamos temporalmente los numeros
                             count.value = ""
@@ -238,7 +263,11 @@ fun main() = application {
 
                     Button(
                         onClick = {
-                            // Covertimos a double el primer numero y lo guardamos en una variable
+
+                            // Almacenamos el primer numero
+                            //numberOne.value = (count.value).toDouble()
+
+                            // Covertimos a double el segundo numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
                             numberTwo.value = (count.value).toDouble()
 
@@ -251,12 +280,16 @@ fun main() = application {
 
                             } else if (symbol.value == "-"){
                                 display.value = "${numberOne.value - numberTwo.value}"
+
                             } else if (symbol.value == "/"){
                                 display.value = "${numberOne.value / numberTwo.value}"
-                            } else {
-                                display.value = "${numberOne.value * numberTwo.value}"
-                            }
 
+                            } else if (symbol.value == "*") {
+                                display.value = "${numberOne.value * numberTwo.value}"
+
+                            }
+                            // Salvamos el resultado actual para mas tarde
+                            numberResult.value = (display.value).toDouble()
 
 
                         }) {
@@ -267,7 +300,14 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            numberOne.value = (count.value).toDouble()
+                            if (numberResult.value == 0.000){
+                                numberOne.value = (count.value).toDouble()
+                            }
+
+                            else {
+                                numberOne.value = numberResult.value
+
+                            }
 
                             // Vaciamos la cadena donde guardamos temporalmente los numeros
                             count.value = ""
