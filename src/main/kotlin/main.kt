@@ -2,7 +2,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
 import androidx.compose.material.darkColors
@@ -18,6 +17,37 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 
 
+fun assignNumberToArraySpace (list: List<Double>, number: Double):  Int {
+    var found: Boolean = true
+    var position = 0
+
+    while (found) {
+        for (n in 0 until 9) {
+            if (list[n] == 0.0) {
+                position = n
+                found = false
+            }
+        }
+    }
+    return position
+}
+
+fun assignSymbolToArraySpace(list: List<String>):  Int {
+    var found: Boolean = true
+    var position = 0
+
+    while (found) {
+        for (n in 0 until 9) {
+            if (list[n] == "") {
+                position = n
+                found = false
+            }
+        }
+    }
+    return position
+}
+
+
 fun main() = application {
 
     Window(
@@ -28,6 +58,17 @@ fun main() = application {
     ) {
         MaterialTheme(colors = darkColors()) {
             Box(Modifier.fillMaxSize().background(MaterialTheme.colors.background))
+        }
+        var arrayNumbers = remember {
+            listOf<Double>(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        }.toMutableList()
+
+        var arraySymbols = remember {
+            listOf<String>("", "", "", "", "", "", "", "", "")
+        }.toMutableList()
+
+        var position = remember {
+            0
         }
 
         var count = remember {
@@ -42,7 +83,7 @@ fun main() = application {
         }
 
         var numberResult = remember {
-            mutableStateOf(0.0011111111111)
+            mutableStateOf(0.0)
         }
 
         var symbol = remember {
@@ -93,11 +134,11 @@ fun main() = application {
                     .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
                     Button(
                         onClick = {
+                            // Show on display the number
                             var number : String = count.value +  "1"
                             count.value = number
                             display.value = "${count.value}"
                             displayOperation.value = display.value
-
 
                         }) {
                         Text("1")
@@ -121,29 +162,27 @@ fun main() = application {
                             display.value = "${count.value}"
                             displayOperation.value = display.value
 
+
                         }) {
                         Text("3")
                     }
 
                     Button(
                         onClick = {
-                            // Covertimos a double el primer numero y lo guardamos en una variable
-                            // Lo usaremos mas tarde
-                            if (numberResult.value == 0.0011111111111){
-                                numberOne.value = (count.value).toDouble()
+                            // Save the number into an array
+                            if (count.value != ""){
+                                position =  assignNumberToArraySpace(arrayNumbers, (count.value).toDouble())
+                                arrayNumbers[position] =  (count.value).toDouble()
+                                count.value = ""
                             }
-
-                            else {
-                                numberOne.value = numberResult.value
-
-                            }
-
-                            // Vaciamos la cadena donde guardamos temporalmente los numeros
-                            count.value = ""
 
                             // Guardar el simbolo
                             symbol.value = "/"
                             displayOperation.value = "/"
+
+                            // Save the number into an array
+                            position =  assignSymbolToArraySpace(arraySymbols)
+                            arraySymbols[position] =  "/"
 
                         }) {
                         Text("÷")
@@ -189,58 +228,61 @@ fun main() = application {
 
                     Button(
                         onClick = {
-                            // Covertimos a double el primer numero y lo guardamos en una variable
-                            // Lo usaremos mas tarde
-                            if (numberResult.value == 0.0011111111111){
-                                numberOne.value = (count.value).toDouble()
+                            // Save the number into an array
+                            if (count.value != ""){
+                                position =  assignNumberToArraySpace(arrayNumbers, (count.value).toDouble())
+                                arrayNumbers[position] =  (count.value).toDouble()
+                                count.value = ""
                             }
-
-                            else {
-                                numberOne.value = numberResult.value
-
-                            }
-
-                            // Vaciamos la cadena donde guardamos temporalmente los numeros
-                            count.value = ""
 
                             // Guardar el simbolo
                             symbol.value = "x"
                             displayOperation.value = "x"
+
+                            // Save the number into an array
+                            position =  assignSymbolToArraySpace(arraySymbols)
+                            arraySymbols[position] =  "x"
+
                         }) {
                         Text("x")
                     }
-
-        
                 }
 
                 Row(modifier = Modifier
                     .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
                     Button(
                         onClick = {
+
                             var number : String = count.value +  "7"
                             count.value = number
                             display.value = "${count.value}"
                             displayOperation.value = display.value
+
                         }) {
                         Text("7")
                     }
 
                     Button(
                         onClick = {
+
                             var number : String = count.value +  "8"
                             count.value = number
                             display.value = "${count.value}"
                             displayOperation.value = display.value
+
                         }) {
                         Text("8")
                     }
 
                     Button(
                         onClick = {
+
                             var number : String = count.value +  "9"
                             count.value = number
                             display.value = "${count.value}"
                             displayOperation.value = display.value
+
+
                         }) {
                         Text("9")
                     }
@@ -249,21 +291,20 @@ fun main() = application {
                         onClick = {
                             // Covertimos a double el primer numero y lo guardamos en una variable
                             // Lo usaremos mas tarde
-                            if (numberResult.value == 0.0011111111111){
-                                numberOne.value = (count.value).toDouble()
+                            if (count.value != ""){
+                                position =  assignNumberToArraySpace(arrayNumbers, (count.value).toDouble())
+                                arrayNumbers[position] =  (count.value).toDouble()
+                                count.value = ""
                             }
-
-                            else {
-                                numberOne.value = numberResult.value
-
-                            }
-
-                            // Vaciamos la cadena donde guardamos temporalmente los numeros
-                            count.value = ""
 
                             // Guardar el simbolo
                             symbol.value = "-"
                             displayOperation.value = "-"
+
+                            // Save the number into an array
+                            position =  assignSymbolToArraySpace(arraySymbols)
+                            arraySymbols[position] =  "-"
+
                         }) {
                         Text("-")
                     }
@@ -275,10 +316,12 @@ fun main() = application {
                     .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
                     Button(
                         onClick = {
+
                             var number : String = count.value +  "0"
                             count.value = number
                             display.value = "${count.value}"
                             displayOperation.value = display.value
+
                         }) {
                         Text("0")
                     }
@@ -292,37 +335,67 @@ fun main() = application {
 
                     Button(
                         onClick = {
-
-                            // Almacenamos el primer numero
-                            //numberOne.value = (count.value).toDouble()
-
-                            // Covertimos a double el segundo numero y lo guardamos en una variable
-                            // Lo usaremos mas tarde
-                            numberTwo.value = (count.value).toDouble()
-
-                            // Vaciamos la cadena donde guardamos temporalmente los numeros
+                            // Save the number into an array
+                            position =  assignNumberToArraySpace(arrayNumbers, (count.value).toDouble())
+                            arrayNumbers[position] =  (count.value).toDouble()
                             count.value = ""
 
-                            // Guardar el simbolo
-                            if (symbol.value == "+"){
-                                display.value = "${numberOne.value + numberTwo.value}"
-                                displayOperation.value =  display.value
+                            // W.I.P
 
-                            } else if (symbol.value == "-"){
-                                display.value = "${numberOne.value - numberTwo.value}"
-                                displayOperation.value =  display.value
+                            var result: Double = 0.0
+                            for (n in arrayNumbers) {
+                                if (symbol.value == "+") {
+                                        result += n
+                                }
+                                if (symbol.value == "-") {
+                                    if (n >= result) {
+                                        result = n - result
+                                    }
+                                     else if (result < n){
+                                        result -= n
+                                    }
+                                }
+                                if (symbol.value == "x") {
+                                    result = 1.0
+                                    result = result * n
 
-                            } else if (symbol.value == "/"){
-                                display.value = "${numberOne.value / numberTwo.value}"
-                                displayOperation.value =  display.value
+                                    }
 
-                            } else if (symbol.value == "x") {
-                                display.value = "${numberOne.value * numberTwo.value}"
-                                displayOperation.value =  display.value
+                                if (symbol.value == "/") {
+                                    result /= n
+                                }
+                            }
+
+                            // Si existe un resultado previo
+                            // Lo añadimos al total con el operando correspondiente
+                            if (numberResult.value != 0.0 && symbol.value == "+"){
+                                result = result + numberResult.value
 
                             }
-                            // Salvamos el resultado actual para mas tarde
-                            numberResult.value = (display.value).toDouble()
+                            if (symbol.value == "-"){
+                                result = numberResult.value - result
+
+                            } else if (symbol.value == "x")  {
+                                result = result * numberResult.value
+
+                            }  else if (numberResult.value != 0.0 && symbol.value == "/") {
+                                if (numberResult.value > result){
+                                    result = numberResult.value / result
+
+                                } else {
+                                    result = result / numberResult.value
+                                }
+                            }
+
+                            // Vaciamos al array de posiciones para nuevos digitos
+                            arrayNumbers =  listOf<Double>(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0).toMutableList()
+
+                            // Preparamos el resultado para mostrarlo por pantalla
+                            display.value = "${result}"
+                            result = (display.value).toDouble()
+                            numberResult.value = result
+                            displayOperation.value =  display.value
+                            symbol.value = ""
 
 
                         }) {
@@ -331,23 +404,19 @@ fun main() = application {
 
                     Button(
                         onClick = {
-                            // Covertimos a double el primer numero y lo guardamos en una variable
-                            // Lo usaremos mas tarde
-                            if (numberResult.value == 0.0011111111111){
-                                numberOne.value = (count.value).toDouble()
+                            // Save the number into an array
+                            if (count.value != ""){
+                                position =  assignNumberToArraySpace(arrayNumbers, (count.value).toDouble())
+                                arrayNumbers[position] =  (count.value).toDouble()
+                                count.value = ""
                             }
-
-                            else {
-                                numberOne.value = numberResult.value
-
-                            }
-
-                            // Vaciamos la cadena donde guardamos temporalmente los numeros
-                            count.value = ""
 
                             // Guardar el simbolo
                             symbol.value = "+"
                             displayOperation.value = "+"
+
+                            position =  assignSymbolToArraySpace(arraySymbols)
+                            arraySymbols[position] =  "+"
                         }) {
                         Text("+")
                     }
