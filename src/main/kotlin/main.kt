@@ -342,27 +342,38 @@ fun main() = application {
 
                             // W.I.P
 
-                            var result: Double = 0.0
+                            var result = 0.0
                             for (n in arrayNumbers) {
                                 if (symbol.value == "+") {
-                                        result += n
+                                    result += n
                                 }
                                 if (symbol.value == "-") {
                                     if (n >= result) {
                                         result = n - result
-                                    }
-                                     else if (result < n){
+                                    } else if (result < n) {
                                         result -= n
                                     }
                                 }
                                 if (symbol.value == "x") {
-                                    result = 1.0
-                                    result = result * n
+                                    if (n != 0.0) {
+                                        if (result == 0.0){
+                                            result = n
+
+                                        } else if (n != 0.0 && result != 0.0 && numberResult.value == 0.0) {
+                                            result = result * n
+
+                                        } else if (numberResult.value > 0.0) {
+                                            result = numberResult.value * result
+                                        }
+
 
                                     }
-
+                                }
                                 if (symbol.value == "/") {
-                                    result /= n
+                                    if (n != 0.0){
+                                        result /= n
+                                    }
+
                                 }
                             }
 
@@ -375,16 +386,14 @@ fun main() = application {
                             if (symbol.value == "-"){
                                 result = numberResult.value - result
 
-                            } else if (symbol.value == "x")  {
-                                result = result * numberResult.value
-
-                            }  else if (numberResult.value != 0.0 && symbol.value == "/") {
-                                if (numberResult.value > result){
+                            }
+                            if (numberResult.value != 0.0 && symbol.value == "/") {
+                                if (numberResult.value > result ){
                                     result = numberResult.value / result
 
-                                } else {
-                                    result = result / numberResult.value
                                 }
+
+
                             }
 
                             // Vaciamos al array de posiciones para nuevos digitos
