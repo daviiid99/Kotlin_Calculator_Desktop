@@ -47,6 +47,49 @@ fun assignSymbolToArraySpace(list: List<String>):  Int {
     return position
 }
 
+fun operacionSuma(result: Double, n: Double) : Double {
+    var operation = result
+    operation += n
+    return operation
+
+}
+
+fun operacionResta(result: Double, n: Double): Double {
+    var operacion : Double = result
+
+    if (n >= operacion) {
+        operacion = n - operacion
+    } else if (operacion < n) {
+        operacion = operacion - n
+    }
+    return operacion
+}
+
+fun operacionMultiplicacion(result: Double, n: Double, numberResult : Double): Double {
+    var operacion = result
+
+    if (n != 0.0) {
+        if (operacion == 0.0){
+            operacion = n
+
+        } else if (n != 0.0 && operacion != 0.0 && numberResult == 0.0) {
+            operacion = operacion * n
+
+        } else if (numberResult > 0.0) {
+            operacion = numberResult * operacion
+        }
+    }
+    return operacion
+}
+
+fun operacionDivision(result: Double, n: Double): Double {
+    var operacion = result
+
+    if (n != 0.0){
+        operacion /= n
+    }
+    return operacion
+}
 
 fun main() = application {
 
@@ -341,39 +384,19 @@ fun main() = application {
                             count.value = ""
 
                             // W.I.P
-
                             var result = 0.0
                             for (n in arrayNumbers) {
                                 if (symbol.value == "+") {
-                                    result += n
+                                    result = operacionSuma(result, n)
                                 }
                                 if (symbol.value == "-") {
-                                    if (n >= result) {
-                                        result = n - result
-                                    } else if (result < n) {
-                                        result -= n
-                                    }
+                                    result = operacionResta(result, n)
                                 }
                                 if (symbol.value == "x") {
-                                    if (n != 0.0) {
-                                        if (result == 0.0){
-                                            result = n
-
-                                        } else if (n != 0.0 && result != 0.0 && numberResult.value == 0.0) {
-                                            result = result * n
-
-                                        } else if (numberResult.value > 0.0) {
-                                            result = numberResult.value * result
-                                        }
-
-
-                                    }
+                                    result = operacionMultiplicacion(result, n, numberResult.value)
                                 }
                                 if (symbol.value == "/") {
-                                    if (n != 0.0){
-                                        result /= n
-                                    }
-
+                                    result = operacionDivision(result, n)
                                 }
                             }
 
@@ -381,19 +404,14 @@ fun main() = application {
                             // Lo añadimos al total con el operando correspondiente
                             if (numberResult.value != 0.0 && symbol.value == "+"){
                                 result = result + numberResult.value
-
                             }
                             if (symbol.value == "-"){
                                 result = numberResult.value - result
-
                             }
                             if (numberResult.value != 0.0 && symbol.value == "/") {
                                 if (numberResult.value > result ){
                                     result = numberResult.value / result
-
                                 }
-
-
                             }
 
                             // Vaciamos al array de posiciones para nuevos digitos
@@ -439,3 +457,7 @@ fun main() = application {
             }
         }
     }
+
+
+
+
